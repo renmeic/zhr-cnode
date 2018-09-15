@@ -2,4 +2,34 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: #f1f1f1;
+}
+p, ul {
+	margin: 0;
+	padding: 0;
+}
+ul {
+	list-style: none;
+}
+img {
+	vertical-align: middle;
+}
+
+.footer {
+	padding: 25px 10px 35px;
+	background: #fff;
+}
+.footer .meta {
+	display: flex;
+	flex-wrap: wrap;
+}
+.footer .meta>li {
+	margin: 15px 30px 0 0;
+}
+.footer .meta img {
+	width: 100px;
+    user-select: none;
+}
+.footer .meta span {
+	margin-right: 10px;
 }
