@@ -21,13 +21,14 @@ export default class Topic extends React.Component {
         <Link to={`/users/${author.loginname}`} className='avatar'>
           <img src={author.avatar_url} alt={author.loginname} title={author.loginname}/>
         </Link>
-        <p className='reply-view'>{reply_count}/{visit_count}</p>
+        { reply_count ? <p className='reply-view'>{reply_count}/{visit_count}</p> : '' }
+        
         <div className='title-box'>
           {
-            top ? <Tag tag='置顶' highlight='highlight'/> : good ? <Tag tag='精华' highlight='highlight'/> : <Tag tag={getTopicType(tab)}/>
+            top ? <Tag tag='置顶' highlight='highlight'/> : good ? <Tag tag='精华' highlight='highlight'/> : tab ? <Tag tag={getTopicType(tab)}/>: ''
           }
           
-          <Link className="title" to={`/topic/${id}`}>{title}</Link>
+          <Link className="title" to={`/topics/${id}`}>{title}</Link>
         </div>
         <span className='last-reply-time'>{getRelativeTime(last_reply_at)}</span>
       </li>

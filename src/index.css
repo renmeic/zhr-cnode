@@ -254,6 +254,47 @@ a:hover {
     margin-bottom: 1em;
 }
 
+/* user profile */
+.user .box {
+    margin-bottom: 15px;
+    background: #fff;
+    border-radius: 3px;
+}
+.user .box .box-title {
+    padding: 10px;
+    background: #f6f6f6;
+}
+.user .box .box-title a {
+    color: #80bd01;
+}
+.user .box .box-title .slashes {
+    color: #ccc;
+}
+.user .box .box-title span {
+    color: #999;
+}
+.user .box .user-info .user img {
+    width: 50px;
+    height: 50px;
+    background: #f6f6f6;
+}
+.user .box .user-info .user span {
+    margin-left: 10px;
+}
+.user .box .user-info {
+    padding: 15px 10px;
+}
+.user .box .user-info .user {
+    margin-bottom: 10px;
+}
+.user .box .user-info .view-topics-collections {
+    margin-top: 5px;
+}
+.user .box .user-info .create-at {
+    margin-top: 10px;
+    color: #666;
+}
+
 /* footer */
 .footer {
 	padding: 25px 10px 35px;

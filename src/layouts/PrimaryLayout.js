@@ -15,7 +15,7 @@ const PrimaryLayout = ({ match }) => (
     <Header />
     <main className='main'>
       <Route path='/' exact component={HomePage} />
-      <Route path='/topic/:topic_id' exact component={TopicPage} />
+      <Route path='/topics/:topic_id' exact component={TopicPage} />
       <Route path='/users/:user_id' exact component={UserProfilePage} />
     </main>
     <Footer/>
