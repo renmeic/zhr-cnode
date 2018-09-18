@@ -1,20 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'antd/dist/antd.css';
+import './github-markdown.min.css';
 import './index.css';
-import Header from './components/Header'
-import Main from './components/Main'
-import Sidebar from './components/Sidebar'
-import Footer from './components/Footer'
+import { Provider } from 'react-redux'
+import CnodeApp from './CnodeApp'
+import store from './store'
 
-const Index = () => {
-	return (
-		<div>
-			<Header/>
-			<Main/>
-			<Sidebar/>
-			<Footer/>
-		</div>
-	)
-}
-
-ReactDOM.render(<Index />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <CnodeApp/>
+  </Provider>, document.getElementById('root'));

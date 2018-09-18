@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 export default class Header extends React.Component {
 	render() {
@@ -9,9 +10,9 @@ export default class Header extends React.Component {
             <a><img src='./images/cnodejs.svg' alt='cnodejs logo'/></a>
           </h1>
           <nav className='nav'>
-            <a>首页</a>
-            <a>关于作者</a>
-            <a>登录</a>
+            <NavLink to="/" exact activeClassName="active">首页</NavLink>
+            <NavLink to="/users" activeClassName="active">关于作者</NavLink>
+            <NavLink to="/auth/login" activeClassName="active">登录</NavLink>
           </nav>
         </div>
       </header>

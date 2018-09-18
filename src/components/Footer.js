@@ -10,7 +10,7 @@ export default class Footer extends React.Component {
             <li>
               <span>CNode社区提供API</span>
               <a href="https://cnodejs.org">
-                <img src="https://cnodejs.org/public/images/cnodejs.svg" alt="cnode"/>
+                <img src="./images/cnodejs_f.svg" alt="cnode"/>
               </a>
             </li>
             <li>

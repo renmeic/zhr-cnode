@@ -1,18 +1,35 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
+import Tag from './Tag'
+import { getTopicType, getRelativeTime } from '../utils/index'
 
 export default class Topic extends React.Component {
+  static propTypes = {
+    topic: PropTypes.object
+  }
+  static defaultProps = {
+    topic: {}
+  }
+  // componentWillMount() {
+  //   console.log(this.props.topic)
+  // }
   render() {
+    const {id, author, title, visit_count, reply_count, top, good, tab, last_reply_at } = this.props.topic
     return (
       <li className='topic-list-item'>
-        <a className='avatar'>
-          <img src="https://avatars3.githubusercontent.com/u/7105727?v=4&amp;s=120" alt="头像" title="kinm"/>
-        </a>
-        <p className='reply-view'>3/284</p>
+        <Link to={`/users/${author.loginname}`} className='avatar'>
+          <img src={author.avatar_url} alt={author.loginname} title={author.loginname}/>
+        </Link>
+        <p className='reply-view'>{reply_count}/{visit_count}</p>
         <div className='title-box'>
-          <span className="tag ask">问答</span>
-          <a className="title" href="#/topic/5b9b2ed937b3005a0b0e702a">为什么中国人写不出《JS高程》、《深入理解es6》这类通俗易懂的好书？</a>
+          {
+            top ? <Tag tag='置顶' highlight='highlight'/> : good ? <Tag tag='精华' highlight='highlight'/> : <Tag tag={getTopicType(tab)}/>
+          }
+          
+          <Link className="title" to={`/topic/${id}`}>{title}</Link>
         </div>
-        <span className='last-reply-time'>4 分钟前</span>
+        <span className='last-reply-time'>{getRelativeTime(last_reply_at)}</span>
       </li>
     )
   }
