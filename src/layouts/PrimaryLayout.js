@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import HomePage from '../pages/HomePage'
 import TopicPage from '../pages/TopicPage'
 import UserProfilePage from '../pages/UserProfilePage'
+import CollectionsPage from '../pages/CollectionsPage'
 
 // Sub Layouts
 import UserSubLayout from './UserSubLayout'
@@ -17,6 +18,7 @@ const PrimaryLayout = ({ match }) => (
       <Route path='/' exact component={HomePage} />
       <Route path='/topics/:topic_id' exact component={TopicPage} />
       <Route path='/users/:user_id' exact component={UserProfilePage} />
+      <Route path='/users/:user_id/collections' exact component={CollectionsPage} />
     </main>
     <Footer/>
   </div>

@@ -19,7 +19,7 @@ class UserProfilePage extends React.Component {
     let _this = this
     axios.get(`https://cnodejs.org/api/v1/user/${user_id}`)
     .then(function(response) {
-      console.log(response.data.data)
+      // console.log(response.data.data)
       if(response.data.success) {
         _this.setState({
           user: response.data.data

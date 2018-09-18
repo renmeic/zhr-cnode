@@ -11,7 +11,7 @@ export default class TopicList extends React.Component {
   }
   render() {
     return (
-      <ul>
+      <ul className='topic-list'>
         {this.props.topics.map((topic) =>
           <Topic topic={topic} key={topic.id} />
         )}

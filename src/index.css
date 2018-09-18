@@ -73,6 +73,9 @@ a:hover {
     min-height: 1000px;
     background: #fff;
 }
+.topic-list {
+	background: #fff;
+}
 .topic-list-item {
 	position: relative;
 	padding: 10px;
@@ -293,6 +296,20 @@ a:hover {
 .user .box .user-info .create-at {
     margin-top: 10px;
     color: #666;
+}
+
+.collections .collections-title {
+    padding: 10px;
+    background: #f6f6f6;
+}
+.collections .collections-title a {
+    color: #80bd01;
+}
+.collections .collections-title em {
+    color: #ccc;
+}
+.collections .collections-title span {
+    color: #999;
 }
 
 /* footer */
