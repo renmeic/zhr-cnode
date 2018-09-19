@@ -1,10 +1,11 @@
 import React from 'react'
-import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Tag from '../components/Tag'
 import Reply from '../components/Reply'
+import CollectButton from '../containers/CollectButton'
 import { getRelativeTime } from '../utils/index'
+import { getTopic } from '../utils/service'
 
 class TopicPage extends React.Component {
   constructor(props) {
@@ -22,39 +23,26 @@ class TopicPage extends React.Component {
   _loadTopicDetail() {
     // console.log(this.props.match)
     let { topic_id } = this.props.match.params
-    let _this = this
-    axios.get(`https://cnodejs.org/api/v1/topic/${topic_id}`)
-    .then(function(response) {
-      console.log(response)
+    getTopic(topic_id)
+    .then((response) => {
       if(response.data.success) {
-        _this.setState({
-          topicDetail: response.data.data
+        this.setState({
+          topicDetail: response.data.data,
+          is_collect: response.data.data.is_collect
         })
       }
     })
-    .catch(function(error) {
+    .catch((error) => {
       console.log(error)
-    });
+    })
   }
-  handleCollection() {
+  handleCollect() {
     // 收藏 && 取消收藏主题
-    let {id, is_collect} = this.state.topicDetail
-    let url = is_collect ? `https://cnodejs.org/api/v1/topic_collect/de_collect` : `https://cnodejs.org/api/v1/topic_collect/collect`;
-    console.log(url)
-    axios.post(url, {
-        topic_id: id
-    })
-    .then(res => {
-        console.log(res)
-        if( res.data.success ) {
-           this.state.topicDetail.is_collect = !is_collect
-           this.setState({})
-        }
-    })
-    .catch(e => e);
+    this.setState({is_collect: !this.state.is_collect})
   }
   render() {
-    let {title, visit_count, author, last_reply_at, create_at, top, good, content, replies, is_collect} = this.state.topicDetail
+    let {is_collect} = this.state
+    let {id, title, visit_count, author, last_reply_at, create_at, top, good, content, replies} = this.state.topicDetail
     return (
       <div>
         <div className='topic-detail'>
@@ -70,11 +58,8 @@ class TopicPage extends React.Component {
                 <Link to={`/users/${author.loginname}`}>{author.loginname}</Link>
                 <span> • {visit_count} 次浏览 • 最后一次编辑是 {getRelativeTime(last_reply_at)} • 来自 分享</span>
               </div>
-              {
-                this.props.logged && <div className="collection user-select-none">
-                  <button onClick={this.handleCollection.bind(this)}>{is_collect ? '取消收藏' : '收藏'}</button>
-                  </div>
-              }
+              <CollectButton topicId={id} onCollect={this.handleCollect.bind(this)} collect={is_collect} />
+              
             </div>
           </div>
           <div className='topic-body markdown-body' dangerouslySetInnerHTML={{__html: content}}>
@@ -92,10 +77,4 @@ class TopicPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({loggedUserState}) => {
-  return {
-    logged: loggedUserState.logged,
-    token: loggedUserState.token
-  }
-}
-export default connect(mapStateToProps)(TopicPage)
+export default TopicPage

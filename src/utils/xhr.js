@@ -15,20 +15,8 @@ export const getLoggedUser = () => {
 }
 
 export const login = (token) => {
-  // return new Promise((resolve, reject) => {
-  //   setTimeout(() => {
-  //     store.dispatch({
-  //       type: 'SET_LOGGED_USER',
-  //       logged: true
-  //     })
-  //     resolve()
-  //   }, 500)
-  // })
   return new Promise((resolve, reject) => {
-    // console.log(token)
-    axios.post(`https://cnodejs.org/api/v1/accesstoken`, {
-      accesstoken: token
-    })
+    axios.post(`https://cnodejs.org/api/v1/accesstoken`)
     .then(function(res) {
       window.localStorage.access_token = token
       store.dispatch({

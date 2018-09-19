@@ -1,9 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import TopicList from '../components/TopicList'
 import queryString from 'query-string'
-import axios from 'axios'
 import { Pagination } from 'antd'
+
+import TopicList from '../components/TopicList'
+import {getTopicsData} from '../utils/service'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -41,14 +42,14 @@ class HomePage extends React.Component {
     });
     let _this = this
     let beforeTime = Date.now()
-    axios.get(`https://cnodejs.org/api/v1/topics`, {
-      params: {
-        page: this.state.page,
-        tab: queryString.parse(this.props.location.search).tab || 'all',
-        limit: this.state.limit,
-      }
-    })
-    .then(function(response) {
+    let query_data = {
+      page: this.state.page,
+      tab: queryString.parse(this.props.location.search).tab || 'all',
+      limit: this.state.limit,
+    }
+    getTopicsData(query_data)
+    .then((response) => {
+      // console.log(response)
       var afterTime = Date.now() - beforeTime;
       if( afterTime <= 300 ) {
           setTimeout(() => {
@@ -69,7 +70,7 @@ class HomePage extends React.Component {
     })
     .catch(function(error) {
       console.log(error)
-    });
+    })
   }
   handleIsActive(tab) {
     const search = queryString.parse(this.props.location.search)

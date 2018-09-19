@@ -81,19 +81,22 @@ button, input[type="submit"], input[type="reset"] {
 	float: right;
 	width: 300px;
 }
-.sidebar .personal-information {
+.panel {
+	margin-bottom: 20px;
     background: #fff;
     border-radius: 5px;
 }
-.sidebar .personal-information .top {
+.panel .panel-header {
     padding: 10px;
     background: #f6f6f6;
 }
-.sidebar .personal-information .info {
+.panel .panel-body {
     padding: 10px;
 }
-.sidebar .personal-information .info img {
-    display: inline-block;
+.avatar {
+	display: inline-block;
+}
+.avatar img {
     width: 50px;
     height: 50px;
     background: #f7f7f7;
@@ -303,60 +306,23 @@ button, input[type="submit"], input[type="reset"] {
     margin-bottom: 1em;
 }
 
-/* user profile */
-.user .box {
-    margin-bottom: 15px;
-    background: #fff;
-    border-radius: 3px;
+/* breadcrumb */
+.breadcrumb {
+	color: #999;
 }
-.user .box .box-title {
-    padding: 10px;
-    background: #f6f6f6;
+.breadcrumb a {
+	color: #80bd01;
 }
-.user .box .box-title a {
-    color: #80bd01;
-}
-.user .box .box-title .slashes {
+.breadcrumb.slashes {
     color: #ccc;
-}
-.user .box .box-title span {
-    color: #999;
-}
-.user .box .user-info .user img {
-    width: 50px;
-    height: 50px;
-    background: #f6f6f6;
-}
-.user .box .user-info .user span {
-    margin-left: 10px;
-}
-.user .box .user-info {
-    padding: 15px 10px;
-}
-.user .box .user-info .user {
-    margin-bottom: 10px;
-}
-.user .box .user-info .view-topics-collections {
-    margin-top: 5px;
-}
-.user .box .user-info .create-at {
-    margin-top: 10px;
-    color: #666;
 }
 
-.collections .collections-title {
-    padding: 10px;
-    background: #f6f6f6;
+/* user profile */
+.userprofile-panel .panel-body .meta {
+	display: block;
+	margin-top: 10px;
 }
-.collections .collections-title a {
-    color: #80bd01;
-}
-.collections .collections-title em {
-    color: #ccc;
-}
-.collections .collections-title span {
-    color: #999;
-}
+
 .login {
     width: 300px;
     margin: 80px auto 200px;
@@ -392,6 +358,9 @@ button, input[type="submit"], input[type="reset"] {
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
+}
+.avatar .nickname {
+	margin-left: 10px;
 }
 
 /* footer */

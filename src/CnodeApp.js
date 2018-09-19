@@ -28,17 +28,17 @@ class CnodeApp extends React.Component {
             }, config.params);
         }
         return config;
-    }, e => {
+    }, error => {
         alert('API请求失败!');
-        return Promise.reject(e);
+        return Promise.reject(error);
     });
     
     // 响应拦截器
     axios.interceptors.response.use(res => {
         return res;
-    }, e => {
+    }, error => {
         alert('请求超时或服务器出错!');
-        return Promise.reject(e);
+        return Promise.reject(error);
     });
   }
   render() {
