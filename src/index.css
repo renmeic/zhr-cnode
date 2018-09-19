@@ -32,6 +32,13 @@ a.dark, a.dark:active, a.dark:link, a.dark:visited {
 a:hover {
 	text-decoration: underline;
 }
+input {
+	border: 1px solid transparent;
+}
+button, input[type="submit"], input[type="reset"] {
+    cursor: pointer;
+    outline: none;
+}
 .pull-left {
 	float: left;
 }
@@ -64,6 +71,33 @@ a:hover {
 	margin-bottom: 20px;
 	padding-left: 10px;
 	padding-right: 10px;
+	overflow: hidden;
+}
+.main .content {
+	float: left;
+	width: calc(100% - 330px);
+}
+.main .sidebar {
+	float: right;
+	width: 300px;
+}
+.sidebar .personal-information {
+    background: #fff;
+    border-radius: 5px;
+}
+.sidebar .personal-information .top {
+    padding: 10px;
+    background: #f6f6f6;
+}
+.sidebar .personal-information .info {
+    padding: 10px;
+}
+.sidebar .personal-information .info img {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: #f7f7f7;
+    object-fit: cover;
 }
 
 /* topic list */
@@ -216,6 +250,18 @@ a:hover {
 .topic-header .topic-info {
 	font-size: 12px;
 }
+.topic-header .collection {
+	text-align: right;
+}
+.topic-header .collection button {
+    position: relative;
+    padding: 5px 10px;
+    background: #80bd01;
+    color: #fff;
+    border: none;
+    font-weight: 500;
+    border-radius: 3px;
+}
 .topic-body {
 	padding: 20px 10px;
 	border-top: 1px solid #f0f0f0;
@@ -310,6 +356,42 @@ a:hover {
 }
 .collections .collections-title span {
     color: #999;
+}
+.login {
+    width: 300px;
+    margin: 80px auto 200px;
+    padding: 70px 20px;
+    background: #444;
+    border-radius: 3px;
+}
+.login .input {
+    height: 45px;
+}
+.login .input input {
+    width: 100%;
+    height: 100%;
+    padding: 0 0 0 8px;
+    box-sizing: border-box;
+    border-radius: 0 0 5px 5px;
+    font-size: 16px;
+}
+.login .get-access-token {
+	margin-top: 10px;
+}
+.login .get-access-token a {
+    color: #fff;
+}
+.login .submit {
+    position: relative;
+    margin-top: 15px;
+    padding: 10px 0;
+    background: #f9671e;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
 }
 
 /* footer */

@@ -2,7 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import TopicList from '../components/TopicList'
-import { getRelativeTime } from '../utils/index'
 
 export default class CollectionsPage extends React.Component {
   constructor(props) {
@@ -34,7 +33,7 @@ export default class CollectionsPage extends React.Component {
     return (
       <div className='collections'>
         <div className="collections-title">
-          <a href="#/">主页</a><em className="slashes"> / </em>
+          <Link to="/">主页</Link><em className="slashes"> / </em>
           <span>{this.props.match.params.user_id} 收藏的话题</span>
         </div>
         <TopicList topics={this.state.topics}/>

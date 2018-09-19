@@ -92,7 +92,7 @@ class HomePage extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className='content'>
         <div className='topic-tab'>
           <NavLink to="/" isActive={this.handleIsActive.bind(this, 'all')} className='topic-tab-item'>全部</NavLink>
           <NavLink to="/?tab=good" isActive={this.handleIsActive.bind(this, 'good')} className='topic-tab-item'>精华</NavLink>

@@ -1,21 +1,48 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { login } from '../utils/xhr'
 
-const LoginPage = ({ history }) => (
-  <div>
-    <h1>Login Page</h1>
-    <p>
-      For this example application, we cannot visit <Link to="/app">/app</Link> until we are logged in.
-      Clicking the "Login" button will simulate a login by setting Redux state. This example compliments
-      the CSS-Tricks article I wrote for <a target="_blank" rel="noopener noreferrer" href="https://css-tricks.com/react-router-4/">React Router 4</a>.
-    </p>
-    <button onClick={() => {
-      login().then(() => {
-        history.push('/app')
-      })
-    }}>Login</button>
-  </div>
-)
+class LoginPage extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      token: ''
+    }
+  }
+  componentDidMount() {
+    if(window.localStorage.access_token) {
+      this.props.history.replace('/')
+    }
+  }
+  handleSubmit() {
+    let {token} = this.state
+    if(!token) return alert('Access Token 不能为空');
+    login(token)
+    .then((res) => {
+      this.props.history.push('/')
+      // console.log(res)
+    })
+  }
+  handleOnChange(e) {
+    this.setState({ token: e.target.value })
+  }
+  render() {
+    return (
+      <div className='login'>
+        <div className="input last">
+          <input onChange={this.handleOnChange.bind(this)} type="text" maxLength="50" placeholder="Access Token"/>
+        </div>
+        <div className="get-access-token">
+          <a href="https://cnodejs.org/setting" rel="noopener noreferrer" target="_blank">如何获取Access Token？</a>
+        </div>
+        <div className="submit user-select-none" onClick={this.handleSubmit.bind(this)}>Sign in</div>
+        {/*<button onClick={() => {
+          login().then(() => {
+            this.props.history.push('/app')
+          })
+        }}>Login</button>*/}
+      </div>
+    )
+  }
+}
 
 export default LoginPage

@@ -13,9 +13,6 @@ export default class Reply extends React.Component {
       author: {}
     }
   }
-  constructor(props) {
-    super(props)
-  }
   scrollToAnchor(anchorName) {
     if (anchorName) {
         let anchorElement = document.getElementById(anchorName);
