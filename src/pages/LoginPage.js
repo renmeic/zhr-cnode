@@ -1,5 +1,5 @@
 import React from 'react'
-import { login } from '../utils/xhr'
+import { login } from '../utils/service'
 
 class LoginPage extends React.Component {
   constructor() {
@@ -12,14 +12,15 @@ class LoginPage extends React.Component {
     if(window.localStorage.access_token) {
       this.props.history.replace('/')
     }
+    console.log(this.props.history)
   }
   handleSubmit() {
     let {token} = this.state
     if(!token) return alert('Access Token 不能为空');
     login(token)
     .then((res) => {
-      this.props.history.push('/')
       // console.log(res)
+      this.props.history.goBack()
     })
   }
   handleOnChange(e) {

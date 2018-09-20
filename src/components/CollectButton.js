@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 
 import {collect} from '../utils/service'
 
-export default class CollectButton extends React.Component {
+class CollectButton extends React.Component {
   static propTypes = {
-    collect: PropTypes.bool
+    collect: PropTypes.bool,
+    logged: PropTypes.bool,
+    onCollect: PropTypes.func
   }
   handleCollection() {
     collect(this.props.collect, this.props.topicId)
@@ -28,5 +30,7 @@ export default class CollectButton extends React.Component {
     )
   }
 }
+
+export default CollectButton
 
 

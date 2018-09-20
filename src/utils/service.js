@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '../store'
 
 let base_url = 'https://cnodejs.org/api/v1/';
 // topics 主题首页
@@ -71,5 +72,81 @@ export function getCollect(username) {
     .catch((error) => {
       reject(error);
     });
+  })
+}
+
+// 请求用户登录
+export function getLoggedUser() {
+  setTimeout(() => {
+    store.dispatch({
+      type: 'GET_LOGGED_USER'
+    })
+  }, 500)
+}
+
+// 用户登录
+export function login(token) {
+  return new Promise((resolve, reject) => {
+    axios.post(`${base_url}accesstoken`, {
+      accesstoken: token
+    })
+    .then((res) => {
+      window.localStorage.access_token = token
+      store.dispatch({
+        type: 'SET_LOGGED_USER',
+        logged: true,
+        token: token,
+        loginname: res.data.loginname,
+        avatar_url: res.data.avatar_url,
+      })
+      resolve(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  })
+}
+
+// 检查本地accesstoken
+export function checkLogin() {
+  if(window.localStorage.access_token) {
+    axios.post(`${base_url}accesstoken`)
+    .then((res) => {
+      store.dispatch({
+        type: 'SET_LOGGED_USER',
+        logged: true,
+        token: window.localStorage.access_token,
+        loginname: res.data.loginname,
+        avatar_url: res.data.avatar_url,
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+}
+
+// 登出
+export function logout() {
+  return new Promise((resolve, reject) => {
+    window.localStorage.removeItem('access_token')
+    store.dispatch({
+      type: 'SET_LOGGED_USER',
+      logged: false
+    })
+    resolve()
+  })
+}
+
+// 为评论点赞
+export function like(reply_id) {
+  return new Promise((resolve, reject) => {
+    axios.post(`${base_url}/reply/${reply_id}/ups`)
+    .then((res) => {
+      resolve(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   })
 }

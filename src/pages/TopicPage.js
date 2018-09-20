@@ -1,9 +1,9 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import Tag from '../components/Tag'
 import Reply from '../components/Reply'
-import CollectButton from '../containers/CollectButton'
+import CollectButton from '../components/CollectButton'
 import { getRelativeTime } from '../utils/index'
 import { getTopic } from '../utils/service'
 
@@ -26,6 +26,7 @@ class TopicPage extends React.Component {
     getTopic(topic_id)
     .then((response) => {
       if(response.data.success) {
+        // console.log(response.data.data)
         this.setState({
           topicDetail: response.data.data,
           is_collect: response.data.data.is_collect
@@ -40,9 +41,22 @@ class TopicPage extends React.Component {
     // 收藏 && 取消收藏主题
     this.setState({is_collect: !this.state.is_collect})
   }
+  handleLike(action, index) {
+    // 点赞 && 取消
+    // console.log(action)
+    if( action === 'down' ) {
+        this.state.topicDetail.replies[index].is_uped = false;
+        this.state.topicDetail.replies[index].ups.pop();
+    } else {
+        this.state.topicDetail.replies[index].is_uped = true;
+        this.state.topicDetail.replies[index].ups.push(Date.now());
+    }
+    this.setState({})
+  }
   render() {
     let {is_collect} = this.state
     let {id, title, visit_count, author, last_reply_at, create_at, top, good, content, replies} = this.state.topicDetail
+    // console.log(replies)
     return (
       <div>
         <div className='topic-detail'>
@@ -58,7 +72,7 @@ class TopicPage extends React.Component {
                 <Link to={`/users/${author.loginname}`}>{author.loginname}</Link>
                 <span> • {visit_count} 次浏览 • 最后一次编辑是 {getRelativeTime(last_reply_at)} • 来自 分享</span>
               </div>
-              <CollectButton topicId={id} onCollect={this.handleCollect.bind(this)} collect={is_collect} />
+              <CollectButton logged={this.props.logged} topicId={id} onCollect={this.handleCollect.bind(this)} collect={is_collect} />
               
             </div>
           </div>
@@ -68,7 +82,13 @@ class TopicPage extends React.Component {
         <ul className='reply-list'>
           {
             replies.map((reply, index) => 
-              <Reply reply={reply} key={reply.id} index={index} />
+              <Reply
+                onLike={this.handleLike.bind(this)}
+                logged={this.props.logged}
+                reply={reply}
+                key={reply.id}
+                username={this.props.loginname}
+                index={index} />
             )
           }
         </ul>
@@ -77,4 +97,11 @@ class TopicPage extends React.Component {
   }
 }
 
-export default TopicPage
+const mapStateToProps = ({loggedUserState}) => {
+  return {
+    logged: loggedUserState.logged,
+    loginname: loggedUserState.loginname
+  }
+}
+
+export default connect(mapStateToProps)(TopicPage)

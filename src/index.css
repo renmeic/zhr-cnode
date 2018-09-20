@@ -69,13 +69,14 @@ button, input[type="submit"], input[type="reset"] {
 .main {
 	margin-top: 20px;
 	margin-bottom: 20px;
+	overflow: auto;
+}
+.main > * {
 	padding-left: 10px;
 	padding-right: 10px;
-	overflow: hidden;
 }
 .main .content {
-	float: left;
-	width: calc(100% - 330px);
+	overflow: auto;
 }
 .main .sidebar {
 	float: right;
@@ -152,8 +153,6 @@ button, input[type="submit"], input[type="reset"] {
     padding-left: 45px;
 }
 .topic-list-item .title {
-	display: inline-block;
-	max-width: 70%;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -289,10 +288,14 @@ button, input[type="submit"], input[type="reset"] {
     margin-left: 10px;
     display: inline-block;
 }
-.user_action {
+.like {
     float: right;
     margin-left: 20px;
     font-size: 15px;
+}
+.like .fa { cursor: pointer; }
+.like .count {
+	margin-right: 8px;
 }
 .reply_content {
     padding-left: 50px;
@@ -381,4 +384,16 @@ button, input[type="submit"], input[type="reset"] {
 }
 .footer .meta span {
 	margin-right: 10px;
+}
+
+/* media */
+@media (max-width: 998px) {
+	.sidebar { display: none; }
+}
+@media (min-width: 1200px) {
+	.main {
+		width: 1160px;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }

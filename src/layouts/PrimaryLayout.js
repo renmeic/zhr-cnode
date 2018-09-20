@@ -6,7 +6,6 @@ import HomePage from '../pages/HomePage'
 import TopicPage from '../pages/TopicPage'
 import UserProfilePage from '../pages/UserProfilePage'
 import CollectionsPage from '../pages/CollectionsPage'
-import Sidebar from '../components/Sidebar'
 
 import AuthorizedRoute from '../AuthorizedRoute'
 
@@ -17,6 +16,9 @@ import UnauthorizedLayout from './UnauthorizedLayout'
 import AuthorizedLayout from './AuthorizedLayout'
 
 class PrimaryLayout extends React.Component {
+  componentDidUpdate() {
+    this.props.location.state = this.props.userinfo
+  }
   render() {
     return (
       <div className="primary-layout">
@@ -30,7 +32,6 @@ class PrimaryLayout extends React.Component {
             <Route path='/users/:user_id/collections' exact component={CollectionsPage} />
             <AuthorizedRoute component={AuthorizedLayout} />
           </Switch>
-          <Sidebar/>
         </main>
         <Footer/>
       </div>

@@ -6,6 +6,9 @@ export default class Tag extends React.Component {
     tag: PropTypes.string,
     highlight: PropTypes.string
   }
+  static defaultProps = {
+    highlight: ''
+  }
   render() {
     return (
       <span className={''.concat('tag',' ', this.props.highlight)}>{this.props.tag}</span>

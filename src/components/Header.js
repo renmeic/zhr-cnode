@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { NavLink } from 'react-router-dom'
-import { logout } from '../utils/xhr'
+import { NavLink, Link } from 'react-router-dom'
+import { logout } from '../utils/service'
 
 class Header extends React.Component {
 	render() {
@@ -9,7 +9,7 @@ class Header extends React.Component {
 			<header className='header'>
         <div className='header-wrap'>
           <h1 className='logo'>
-            <a><img src='/images/cnodejs.svg' alt='cnodejs logo'/></a>
+            <Link to='/'><img src='/images/cnodejs.svg' alt='cnodejs logo'/></Link>
           </h1>
           <nav className='nav'>
             <NavLink to="/" exact activeClassName="active">首页</NavLink>

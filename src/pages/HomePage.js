@@ -22,7 +22,6 @@ class HomePage extends React.Component {
     this.setState({ page }, () => {
       this._loadTopicsData()
     })
-    
   }
   componentDidUpdate(prevProps, prevState, prevContext) {
     if (prevProps.location !== this.props.location) {
@@ -115,5 +114,6 @@ class HomePage extends React.Component {
     )
   }
 }
+
 
 export default HomePage

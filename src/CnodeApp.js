@@ -1,16 +1,16 @@
 import React from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
-import { BrowserRouter} from 'react-router-dom'
-import {checkLogin} from './utils/xhr'
+import { BrowserRouter, Route} from 'react-router-dom'
+import {checkLogin} from './utils/service'
 
 // Layouts
 import PrimaryLayout from './layouts/PrimaryLayout'
 
 class CnodeApp extends React.Component {
   componentWillMount() {
+    this._axiosConfig()
     checkLogin()
-    this._axiosConfig();
   }
   _axiosConfig() {
     // 请求拦截器
@@ -18,13 +18,13 @@ class CnodeApp extends React.Component {
         // post请求默认发送参数
         if( config.method === 'post' ) {
             config.data = Object.assign({
-                accesstoken: this.props.token,
+                accesstoken: this.props.loggedUserState.token,
             }, config.data);
         }
         // 如果是发送GET请求
         if( config.method === 'get' ) {
             config.params = Object.assign({
-                accesstoken: this.props.token,
+                accesstoken: this.props.loggedUserState.token,
             }, config.params);
         }
         return config;
@@ -44,7 +44,7 @@ class CnodeApp extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <PrimaryLayout/>
+        <Route path='/' render={({location}) => <PrimaryLayout location={location} userinfo={this.props.loggedUserState} />}/>
       </BrowserRouter>
     )
   }
@@ -53,7 +53,7 @@ class CnodeApp extends React.Component {
 const mapStateToProps = ({ loggedUserState }) => {
   // console.log(loggedUserState)
   return {
-    token: loggedUserState.token
+    loggedUserState
   }
 }
 
