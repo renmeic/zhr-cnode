@@ -79,7 +79,17 @@ class TopicPage extends React.Component {
                 <span> • {visit_count} 次浏览 • 最后一次编辑是 {getRelativeTime(last_reply_at)} • 来自 分享</span>
               </div>
               <CollectButton logged={this.props.logged} topicId={id} onCollect={this.handleCollect.bind(this)} collect={is_collect} />
-              
+              {
+                this.props.logged
+                &&
+                this.props.loginname === author.loginname
+                &&
+                <div className="operation-edit" style={{fontSize:24}}>
+                  <Link to={`/update/${id}`}>
+                    <i title="编辑" className="fa fa-pencil-square-o"></i>
+                  </Link>
+                </div>
+              }
             </div>
           </div>
           <div className='topic-body markdown-body' dangerouslySetInnerHTML={{__html: content}}>

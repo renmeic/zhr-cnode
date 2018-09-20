@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 // Pages
-import MessagePage from '../pages/MessagePage'
+import CreateTopicPage from '../pages/CreateTopicPage'
 
 const AuthorizedLayout = () => (
   <div className="authorized-layout">
@@ -15,7 +15,8 @@ const AuthorizedLayout = () => (
     
     */}
     <Switch>
-      <Route path="/messages" component={MessagePage} />
+      <Route path="/create" component={CreateTopicPage} />
+      <Route path="/update/:topic_id" component={CreateTopicPage} />
     </Switch>
   </div>
 )

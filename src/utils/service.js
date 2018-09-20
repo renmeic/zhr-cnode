@@ -18,9 +18,13 @@ export function getTopicsData(query_data) {
 }
 
 // topic 详情
-export function getTopic(topic_id) {
+export function getTopic(topic_id, mdrender=true) {
   return new Promise((resolve, reject) => {
-    axios.get(`${base_url}/topic/${topic_id}`)
+    axios.get(`${base_url}/topic/${topic_id}`, {
+      params: {
+        mdrender: mdrender
+      }
+    })
     .then((response) => {
       resolve(response)
     })
@@ -156,6 +160,28 @@ export function createComment(topic_id, content) {
   return new Promise((resolve, reject) => {
     axios.post(`${base_url}topic/${topic_id}/replies`, {
       content: content
+    })
+    .then((res) => {
+      resolve(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  })
+}
+
+// 发布话题
+export function createAndUpdateTopic(title, tab, content, topic_id='') {
+  let url = `${base_url}topics`
+  if(topic_id) {
+    url = `${url}/update`
+  }
+  return new Promise((resolve, reject) => {
+    axios.post(url, {
+      title : title,
+      tab : tab,
+      content : content,
+      topic_id : topic_id,
     })
     .then((res) => {
       resolve(res)

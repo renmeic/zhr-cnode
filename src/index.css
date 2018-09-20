@@ -365,7 +365,7 @@ button, input[type="submit"], input[type="reset"] {
 .avatar .nickname {
 	margin-left: 10px;
 }
-.reply-btn button {
+.primary-btn {
 	position: relative;
     color: #fff;
     background: #08c;

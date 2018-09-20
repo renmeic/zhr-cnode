@@ -50,8 +50,8 @@ export default class Comment extends React.Component {
     return (
       <div className='panel-body'>
         <textarea id="markdown-editor"></textarea>
-        <div className="reply-btn">
-          <button type="button" onClick={this.handleComment.bind(this)}>{this.state.text}</button>
+        <div>
+          <button className='primary-btn' type="button" onClick={this.handleComment.bind(this)}>{this.state.text}</button>
         </div>
       </div>
     )

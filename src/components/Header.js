@@ -16,7 +16,10 @@ class Header extends React.Component {
             <a href="https://github.com/renmeic/" target="_blank" rel="noopener noreferrer">关于作者</a>
             {
               this.props.logged
-              ? <a onClick={() => logout()}>退出</a>
+              ? <span>
+                  <NavLink to='/create'>创建话题</NavLink>
+                  <a onClick={() => logout()}>退出</a>
+                </span>
               : <NavLink to="/auth/login" activeClassName="active">登录</NavLink>
             }
           </nav>
