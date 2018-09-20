@@ -150,3 +150,18 @@ export function like(reply_id) {
     })
   })
 }
+
+// 新建评论
+export function createComment(topic_id, content) {
+  return new Promise((resolve, reject) => {
+    axios.post(`${base_url}topic/${topic_id}/replies`, {
+      content: content
+    })
+    .then((res) => {
+      resolve(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  })
+}

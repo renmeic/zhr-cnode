@@ -25,6 +25,8 @@ export default class Reply extends React.Component {
   }
   // 回复
   handleToReply (loginname) {
+    // console.log(loginname)
+    if(loginname) this.props.onAt(loginname)
     let top = document.querySelector('.footer').offsetTop;
     window.scrollTo({
       top: top - 80,
@@ -64,7 +66,7 @@ export default class Reply extends React.Component {
             <span className="count">
               {ups.length}
             </span>
-            <i onClick={this.handleToReply.bind(this)} className="fa fa-reply"></i>
+            <i onClick={this.handleToReply.bind(this, author.loginname)} className="fa fa-reply"></i>
           </div>
         </div>
         <div className="reply_content from-xudafeng">

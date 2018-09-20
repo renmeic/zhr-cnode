@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Tag from '../components/Tag'
 import Reply from '../components/Reply'
+import Comment from '../components/Comment'
 import CollectButton from '../components/CollectButton'
 import { getRelativeTime } from '../utils/index'
 import { getTopic } from '../utils/service'
@@ -13,7 +14,8 @@ class TopicPage extends React.Component {
     this.state = {
       topicDetail: {
         author: {},
-        replies: []
+        replies: [],
+        at: '',
       }
     }
   }
@@ -53,6 +55,10 @@ class TopicPage extends React.Component {
     }
     this.setState({})
   }
+  handleAt(at) {
+    // console.log(at)
+    this.setState({at: at})
+  }
   render() {
     let {is_collect} = this.state
     let {id, title, visit_count, author, last_reply_at, create_at, top, good, content, replies} = this.state.topicDetail
@@ -84,6 +90,7 @@ class TopicPage extends React.Component {
             replies.map((reply, index) => 
               <Reply
                 onLike={this.handleLike.bind(this)}
+                onAt={this.handleAt.bind(this)}
                 logged={this.props.logged}
                 reply={reply}
                 key={reply.id}
@@ -92,6 +99,12 @@ class TopicPage extends React.Component {
             )
           }
         </ul>
+        { this.props.logged &&
+          <div className='panel' style={{marginTop:20}}>
+            <div className='panel-header'>添加回复</div>
+            <Comment at={this.state.at} topicId={id} onLoad={this._loadTopicDetail.bind(this)}/>
+          </div>
+        }
       </div>
     )
   }
