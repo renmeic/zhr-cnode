@@ -44,7 +44,9 @@ class CnodeApp extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <Route path='/' render={({location}) => <PrimaryLayout location={location} userinfo={this.props.loggedUserState} />}/>
+        <Route path='/' render={({location}) => {
+          location.state = this.props.loggedUserState;
+          return <PrimaryLayout/>}}/>
       </BrowserRouter>
     )
   }

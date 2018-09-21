@@ -1,5 +1,4 @@
 import React from 'react'
-import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Tag from '../components/Tag'
 import Reply from '../components/Reply'
@@ -22,8 +21,9 @@ class TopicPage extends React.Component {
   componentDidMount() {
     this._loadTopicDetail()
   }
+  componentDidUpdate() {
+  }
   _loadTopicDetail() {
-    // console.log(this.props.match)
     let { topic_id } = this.props.match.params
     getTopic(topic_id)
     .then((response) => {
@@ -60,8 +60,9 @@ class TopicPage extends React.Component {
     this.setState({at: at})
   }
   render() {
-    let {is_collect} = this.state
-    let {id, title, visit_count, author, last_reply_at, create_at, top, good, content, replies} = this.state.topicDetail
+    const {logged, loginname} = this.props.location.state
+    const {is_collect} = this.state
+    const {id, title, visit_count, author, last_reply_at, create_at, top, good, content, replies} = this.state.topicDetail
     // console.log(replies)
     return (
       <div>
@@ -80,9 +81,9 @@ class TopicPage extends React.Component {
               </div>
               <CollectButton logged={this.props.logged} topicId={id} onCollect={this.handleCollect.bind(this)} collect={is_collect} />
               {
-                this.props.logged
+                logged
                 &&
-                this.props.loginname === author.loginname
+                loginname === author.loginname
                 &&
                 <div className="operation-edit" style={{fontSize:24}}>
                   <Link to={`/update/${id}`}>
@@ -101,15 +102,15 @@ class TopicPage extends React.Component {
               <Reply
                 onLike={this.handleLike.bind(this)}
                 onAt={this.handleAt.bind(this)}
-                logged={this.props.logged}
+                logged={logged}
                 reply={reply}
                 key={reply.id}
-                username={this.props.loginname}
+                username={loginname}
                 index={index} />
             )
           }
         </ul>
-        { this.props.logged &&
+        { logged &&
           <div className='panel' style={{marginTop:20}}>
             <div className='panel-header'>添加回复</div>
             <Comment at={this.state.at} topicId={id} onLoad={this._loadTopicDetail.bind(this)}/>
@@ -120,11 +121,4 @@ class TopicPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({loggedUserState}) => {
-  return {
-    logged: loggedUserState.logged,
-    loginname: loggedUserState.loginname
-  }
-}
-
-export default connect(mapStateToProps)(TopicPage)
+export default TopicPage

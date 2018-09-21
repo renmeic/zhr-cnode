@@ -10,15 +10,10 @@ import CollectionsPage from '../pages/CollectionsPage'
 import AuthorizedRoute from '../AuthorizedRoute'
 
 // Sub Layouts
-/*import UserSubLayout from './UserSubLayout'
-import ProductSubLayout from './ProductSubLayout'*/
 import UnauthorizedLayout from './UnauthorizedLayout'
 import AuthorizedLayout from './AuthorizedLayout'
 
 class PrimaryLayout extends React.Component {
-  componentDidUpdate() {
-    this.props.location.state = this.props.userinfo
-  }
   render() {
     return (
       <div className="primary-layout">

@@ -1,9 +1,7 @@
 import { createStore, combineReducers } from 'redux'
-import topicsReducer from './reducers/topics'
 import loggedUserReducer from './reducers/loggedUserReducer'
 const reducers = combineReducers({
-  loggedUserState: loggedUserReducer,
-  topicsState: topicsReducer
+  loggedUserState: loggedUserReducer
 })
 
 const store = createStore(reducers)
