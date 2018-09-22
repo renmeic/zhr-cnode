@@ -36,7 +36,7 @@ class UserProfilePage extends React.Component {
   render() {
     const { user } = this.state
     return (
-      <div className="topics-container user">
+      <div className="content">
           <div className="panel userprofile-panel">
               <div className="panel-header">
                 <div className='breadcrumb'>

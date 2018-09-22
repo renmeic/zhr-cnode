@@ -1,10 +1,10 @@
 import React from 'react'
-import {connect} from 'react-redux'
 import { NavLink, Link } from 'react-router-dom'
 import { logout } from '../utils/service'
 
 class Header extends React.Component {
 	render() {
+    // console.log(this.props.logged)
 		return (
 			<header className='header'>
         <div className='header-wrap'>
@@ -29,11 +29,4 @@ class Header extends React.Component {
 	}
 }
 
-const mapStateToProps = ({ loggedUserState }) => {
-  // console.log(loggedUserState)
-  return {
-    logged: loggedUserState.logged
-  }
-}
-
-export default connect(mapStateToProps)(Header)
+export default Header

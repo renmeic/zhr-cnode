@@ -19,10 +19,10 @@ export default class CreateTopicPage extends React.Component {
   _loadTopicData() {
     const topic_id = this.props.match.params.topic_id
     if(topic_id) {
-      console.log('update')
+      // console.log('update')
       getTopic(topic_id, false)
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         this.setState({
           title: res.data.data.title,
           tab: res.data.data.tab,
@@ -56,7 +56,7 @@ export default class CreateTopicPage extends React.Component {
     const topic_id = this.props.match.params.topic_id || ''
     createAndUpdateTopic(title, tab, value, topic_id)
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       if(res.data.success) {
         topic_id ? alert('更新成功！') : alert('发布成功！')
         this.props.history.push(`/topics/${res.data.topic_id}`)
@@ -69,26 +69,28 @@ export default class CreateTopicPage extends React.Component {
   render() {
     const Option = Select.Option
     return (
-      <div className="panel">
-        <div className='panel-header'>
-          <div className='breadcrumb'>
-            <Link to="/">主页</Link>
-            <em className="slashes"> / </em>
-            <span>发布话题</span>
+      <div className='content'>
+        <div className="panel">
+          <div className='panel-header'>
+            <div className='breadcrumb'>
+              <Link to="/">主页</Link>
+              <em className="slashes"> / </em>
+              <span>发布话题</span>
+            </div>
           </div>
-        </div>
-        <div className='panel-body'>
-          选择版块：<Select defaultValue={this.state.tab} style={{ width: 120 }} onChange={this.handleSelectChange.bind(this)}>
-            <Option value="dev">客户端测试</Option>
-            <Option value="share">分享</Option>
-            <Option value="ask">问答</Option>
-            <Option value="job">招聘</Option>
-          </Select>
-          <Input style={{marginTop:20}} placeholder="标题字数 5字以上" value={this.state.title} onChange={this.handleInputChange.bind(this)}/>
-          <div style={{marginTop:20}}><textarea id="markdown-editor"></textarea></div>
-          <div>
-            <button onClick={this.handleSumbit.bind(this)} className='primary-btn' type="button">
-              {this.props.match.params.topic_id ? '更新' : '发布'}</button>
+          <div className='panel-body'>
+            选择版块：<Select defaultValue={this.state.tab} style={{ width: 120 }} onChange={this.handleSelectChange.bind(this)}>
+              <Option value="dev">客户端测试</Option>
+              <Option value="share">分享</Option>
+              <Option value="ask">问答</Option>
+              <Option value="job">招聘</Option>
+            </Select>
+            <Input style={{marginTop:20}} placeholder="标题字数 5字以上" value={this.state.title} onChange={this.handleInputChange.bind(this)}/>
+            <div style={{marginTop:20}}><textarea id="markdown-editor"></textarea></div>
+            <div>
+              <button onClick={this.handleSumbit.bind(this)} className='primary-btn' type="button">
+                {this.props.match.params.topic_id ? '更新' : '发布'}</button>
+            </div>
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ class LoginPage extends React.Component {
     if(window.localStorage.access_token) {
       this.props.history.replace('/')
     }
-    console.log(this.props.history)
+    // console.log(this.props.history)
   }
   handleSubmit() {
     let {token} = this.state

@@ -65,7 +65,7 @@ class TopicPage extends React.Component {
     const {id, title, visit_count, author, last_reply_at, create_at, top, good, content, replies} = this.state.topicDetail
     // console.log(replies)
     return (
-      <div>
+      <div className='content'>
         <div className='topic-detail'>
           <div className="topic-header">
             <div className="topic-title">
@@ -86,7 +86,7 @@ class TopicPage extends React.Component {
                 loginname === author.loginname
                 &&
                 <div className="operation-edit" style={{fontSize:24}}>
-                  <Link to={`/update/${id}`}>
+                  <Link to={`/topics/${id}/update`}>
                     <i title="编辑" className="fa fa-pencil-square-o"></i>
                   </Link>
                 </div>

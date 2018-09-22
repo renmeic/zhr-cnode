@@ -16,7 +16,7 @@ const AuthorizedLayout = () => (
     */}
     <Switch>
       <Route path="/create" component={CreateTopicPage} />
-      <Route path="/update/:topic_id" component={CreateTopicPage} />
+      <Route path="/topics/:topic_id/update" component={CreateTopicPage} />
     </Switch>
   </div>
 )

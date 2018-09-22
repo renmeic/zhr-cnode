@@ -30,21 +30,23 @@ export default class CollectionsPage extends React.Component {
   }
   render() {
     return (
-      <div className='panel'>
-        <div className="panel-header">
-          <div className='breadcrumb'>
-            <Link to="/">主页</Link>
-            <em className="slashes"> / </em>
-            <span>{this.props.match.params.user_id} 收藏的话题</span>
+      <div className='content'>
+        <div className='panel'>
+          <div className="panel-header">
+            <div className='breadcrumb'>
+              <Link to="/">主页</Link>
+              <em className="slashes"> / </em>
+              <span>{this.props.match.params.user_id} 收藏的话题</span>
+            </div>
           </div>
-        </div>
-        <div className='panel-body'>
-          {
-            this.state.topics.length
-            ? <TopicList topics={this.state.topics}/>
-            : '无'
-          }
+          <div className='panel-body'>
+            {
+              this.state.topics.length
+              ? <TopicList topics={this.state.topics}/>
+              : '无'
+            }
 
+          </div>
         </div>
       </div>
     )
